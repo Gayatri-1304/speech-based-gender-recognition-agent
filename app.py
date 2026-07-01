@@ -16,7 +16,7 @@ st.set_page_config(
 # -------------------------------
 # Load Saved Files
 # -------------------------------
-model = joblib.load("mlp_model.pkl")
+model = joblib.load("gender_model.pkl")
 scaler = joblib.load("scaler.pkl")
 encoder = joblib.load("label_encoder.pkl")
 
