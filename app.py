@@ -57,3 +57,65 @@ mindom = st.number_input("Minimum Dominant Frequency", value=0.0, format="%.6f")
 maxdom = st.number_input("Maximum Dominant Frequency", value=0.0, format="%.6f")
 dfrange = st.number_input("Dominant Frequency Range", value=0.0, format="%.6f")
 modindx = st.number_input("Modulation Index", value=0.0, format="%.6f")
+# Create Predict Button
+if st.button("Predict Gender"):
+
+    # Store all user inputs in a list
+    input_data = [[
+        meanfreq,
+        sd,
+        median,
+        Q25,
+        Q75,
+        IQR,
+        skew,
+        kurt,
+        sp_ent,
+        sfm,
+        mode,
+        centroid,
+        meanfun,
+        minfun,
+        maxfun,
+        meandom,
+        mindom,
+        maxdom,
+        dfrange,
+        modindx
+    ]]
+
+    # Convert to DataFrame
+    input_df = pd.DataFrame(input_data, columns=[
+        "meanfreq",
+        "sd",
+        "median",
+        "Q25",
+        "Q75",
+        "IQR",
+        "skew",
+        "kurt",
+        "sp.ent",
+        "sfm",
+        "mode",
+        "centroid",
+        "meanfun",
+        "minfun",
+        "maxfun",
+        "meandom",
+        "mindom",
+        "maxdom",
+        "dfrange",
+        "modindx"
+    ])
+
+    # Scale the input
+    input_scaled = scaler.transform(input_df)
+
+    # Predict gender
+    prediction = model.predict(input_scaled)
+
+    # Convert prediction to label (Male/Female)
+    gender = encoder.inverse_transform(prediction)[0]
+
+    # Display result
+    st.success(f"Predicted Gender: **{gender.upper()}**")
