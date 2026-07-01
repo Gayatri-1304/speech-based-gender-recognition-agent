@@ -105,7 +105,7 @@ The models were evaluated using:
 Speech-Gender-Recognition-Agent/
 │
 ├── app.py
-├── mlp_model.pkl
+├── gender_model.pkl
 ├── scaler.pkl
 ├── label_encoder.pkl
 ├── requirements.txt
